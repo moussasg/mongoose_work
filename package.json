@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "db": "^3.4.0",
+    "dotenv": "^16.0.3",
+    "mongo": "^0.1.0",
+    "mongoose": "^7.0.0",
+    "mongose": "^0.0.2-security"
+  }
+}
