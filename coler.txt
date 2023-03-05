@@ -1,0 +1,51 @@
+Person.findById('640106c8ec0a4f430c66fa35') // findById
+  .then(person => {
+    console.log('Person found:', person);
+  })
+  .catch(err => {
+    console.error('Error finding person:', err);
+  });
+Person.findOne({ email: "charlie@example.com" })
+  .then(person => {
+      console.log(`Person found: ${person.name}`);
+    })
+  .catch(err => {
+    console.log("Error finding person:", err);
+  });
+  /////////
+const Person = mongoose.model('Person', peopleSchema); // schéma a intérieur de model
+  Person.findById('640106c8ec0a4f430c66fa35')
+  .then(person => {
+    person.favoriteFoods.push("hamburger");
+    return person.save();
+  })
+  .then(updatedPerson => {
+    console.log("Person updated:", updatedPerson);
+  })
+  .catch(err => {
+    console.log("Error updating person:", err);
+  });
+  const Person = mongoose.model('Person', peopleSchema);
+  Person.findOneAndUpdate( // elle ajoute pas le true jcp pas paq !
+    { name: "Charlie" }, 
+    { age: 20 }, 
+    { new: 'true'}
+  )
+  .then(updatedPerson => {
+    console.log("Person updated:", updatedPerson);
+  })
+  .catch(err => {
+    console.log("Error updating person:", err);
+  });
+  ///////
+  const Person = mongoose.model('Person', peopleSchema);
+Person.findByIdAndRemove('640106c8ec0a4f430c66fa35')
+.then( data => {
+  console.log("is deleted:", data);
+})
+.catch( err => {
+  console.log("Error deleting person:", err);
+});
+Person.deleteMany({ name: "Bob" })
+  .then(result => console.log("Documents deleted:", result))
+  .catch(err => console.log("Error deleting documents:", err));
